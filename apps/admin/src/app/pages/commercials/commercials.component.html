@@ -1,0 +1,85 @@
+<p-toast></p-toast>
+<div class="admin-page">
+
+    <p-card header="New commercial" subheader="List of all Commeriaux">
+        <div class="p-grid"> </div>
+        <div class="p-col-12">
+            <p-toolbar>
+                <div class="p-toolbar-group-left">
+                    <p-button label="New" icon="pi pi-plus" (click)="displayDialog = true"></p-button>
+                </div>
+            </p-toolbar>
+        </div>
+        <div class="p-grid">
+
+            <div class="p-col-8">
+                <p-table [paginator]="true" [rows]="5" [value]="Commercial" styleClass="p-datatable-gridlines"
+                    [globalFilterFields]="['dateDevis']">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="color: #0093e9;" pSortableColumn="dateDevis"> Nom <p-sortIcon
+                                    field="dateDevis"></p-sortIcon> </th>
+                            <th style="color: #0093e9;">Phone</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-devis>
+                        <tr>
+                            <td style="font-weight: bold;">{{devis.fullName }}</td>
+                            <td style="font-weight: bold;">{{devis.Phone }}</td>
+
+
+
+                            <td>
+
+                                <button 
+                                (click)="updateCommercial(devis.id)"
+                                pButton pRipple label="Update" icon="pi pi-pencil"></button>
+                            </td>
+
+
+                            <td>
+                                <p-button (click)="deleteCommercial(devis.id)" styleClass="p-button-danger p-mr-1"
+                                    icon="pi pi-trash"></p-button>
+                            </td>
+
+                        </tr>
+
+
+                    </ng-template>
+                </p-table>
+
+            </div>
+
+        </div>
+
+
+        <p-dialog header="Add Commercial" [(visible)]="displayDialog" [responsive]="true" [modal]="isModal"
+            [style]="{width: '60%', height: '50%'}">
+            <form #addClaimForm="ngForm" (ngSubmit)="_addCommercial(addClaimForm.value)">
+                <div class="p-fluid">
+                    <div class="p-field">
+                        <label for="showroom">Nom</label>
+                        <input id="showroom" type="text" pInputText placeholder="Enter Nom" name="fullName"
+                            [(ngModel)]="newProduit.fullName" required />
+                    </div>
+                    <div class="p-field">
+                        <label for="commercial">Phone</label>
+                        <input id="commercial" type="text" pInputText placeholder="Enter Numero" name="Phone"
+                            [(ngModel)]="newProduit.Phone" required />
+                    </div>
+                </div>
+                <p-footer>
+                    <button type="submit" pButton label="Save"></button>
+                    <button type="button" pButton label="Cancel" (click)="displayDialog = false"></button>
+                </p-footer>
+            </form>
+        </p-dialog>
+
+
+
+
+
+        <p-confirmDialog header="Delete"></p-confirmDialog>
+
+
+    </p-card>

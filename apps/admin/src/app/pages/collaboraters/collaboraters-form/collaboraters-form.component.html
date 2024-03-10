@@ -1,0 +1,70 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card
+    [header]="editmode ? 'Edit Articles' : 'Add Articles'"
+    subheader="You can add or edit Articles here"
+  >
+    <div class="p-grid p-mb-5">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <p-button
+              styleClass="p-button-primary p-mr-2"
+              [label]="editmode ? 'Update' : 'Create'"
+              icon="pi pi-plus"
+              (click)="onSubmit()"
+            ></p-button>
+            <p-button
+              styleClass="p-button-secondary"
+              label="Cancle"
+              icon="pi pi-arrow-circle-left"
+              (click)="onCancle()"
+
+             ></p-button>
+          </div>
+        </p-toolbar>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <form [formGroup]="form">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="name">description</label>
+                            <input formControlName="description" id="description" type="text" pInputText />
+                            <small *ngIf="form.controls['description'].invalid && isSubmitted" class="p-error">description is
+                                required</small>
+                        </div>
+
+                        <div class="p-field p-col">
+                            <label for="brand">Contenu</label>
+                            <input formControlName="contenu" id="contenu" type="text" pInputText />
+                            <small *ngIf="form.controls['contenu'].invalid && isSubmitted" class="p-error">contenu is
+                                required</small>
+                        </div>
+                         
+                      
+                    </div>
+                 
+           
+
+            <div class="p-field p-col-12">
+              <label for="name">Image</label><br>
+              <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)" />
+              <small *ngIf="form.controls['image'].invalid && isSubmitted" class="p-error">Image is
+                  required</small>
+              <div class="p-col-2 p-mt-2 p-pl-0">
+                  <img style="width: 100%" [src]="imageDisplay" alt="" />
+              </div>
+          </div>
+
+                       
+
+
+ 
+                </form>
+            </div>
+        </div>
+    </p-card>
+</div>

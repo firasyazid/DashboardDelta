@@ -1,0 +1,77 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card header="Livraisons" subheader="List of all Livraisons">
+    <div class="p-grid">
+     
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-table
+        [paginator]="true"
+        [rows]="5"
+[value]="Livr" styleClass="p-datatable-gridlines">
+          <ng-template pTemplate="header">
+            <tr>
+            <th pSortableColumn="name" style="color: #0093e9;">Numéro Livraison </th>
+            <th pSortableColumn="name" style="color: #0093e9;">Montant Livraison </th>
+
+              <th style="color: #0093e9;">Numéro commande </th>
+              <th style="color: #0093e9;">Montant commande </th>
+              <th style="color: #0093e9;">Numéro devis </th>
+              <th style="color: #0093e9;">Montant devis </th>
+               <th style="color: #0093e9;" pSortableColumn="dateCmd"> Date Commande <p-sortIcon field="dateCmd"></p-sortIcon> </th>
+              <th style="color: #0093e9;" pSortableColumn="dateLivraison"> Date Livraison <p-sortIcon field="dateLivraison"></p-sortIcon> </th>
+              <th style="color: #0093e9;">User</th>
+                 <th style="color: #0093e9;">Converti</th>
+              
+ 
+
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-Livr>
+            <tr>
+              <td><span style="font-weight: bold;">{{ Livr.numLivraison }}</span> </td>
+                <td><span style="font-weight: bold;">{{ Livr.montantLivraison }}</span> </td>
+              <td><span style="font-weight: bold;">{{ Livr.commande?.numCmd }}</span> </td>
+                <td><span style="font-weight: bold;">{{ Livr.commande?.montantCmd }}</span> </td>
+                <td><span style="font-weight: bold;">{{ Livr.devis?.numDevis }}</span> </td>
+                <td><span style="font-weight: bold;">{{ Livr.devis?.montant }}</span> </td>
+               <td><span style="font-weight: bold;">{{ Livr.commande?.dateCmd | date: 'dd/MM/yyyy' }}</span></td>
+              <td><span style="font-weight: bold;"> {{ Livr.dateLivraison  | date: 'dd/MM/yyyy' }}</span>  </td>
+                  <td><span style="font-weight: bold;"> {{ Livr.user?.name }}</span>  </td>
+                   <td><span style="font-weight: bold;"> {{ Livr.devis?.converted }}</span>  </td>
+                  <td>
+                       <p-button  
+                (click)="deleteLiv(Livr.id)"
+                    styleClass="p-button-danger p-mr-2"
+                  icon="pi pi-trash"
+                ></p-button>
+              </td>
+              <td>
+                <button  
+                (click)="updateLivr(Livr.id)"
+                   pButton pRipple label="Update"
+                icon="pi pi-pencil"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <button  
+    (click)="exportExcel(Livr)"
+    pButton pRipple label="Export to Excel"
+    icon="pi pi-file-excel"
+    ></button>
+    <br> <br>
+<button  
+ (click)="exportPdf(Livr)" 
+ pButton pRipple label="Export to Pdf  "
+icon="pi pi-file-pdf"
+></button>
+  </p-card>
+  <p-confirmDialog header="Delete"></p-confirmDialog>
+ 
+</div>
+ 

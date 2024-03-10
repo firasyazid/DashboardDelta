@@ -1,0 +1,113 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card header="New showroom" subheader="List of all showrooms">
+    <div class="p-grid"></div>
+    <div class="p-col-12">
+      <p-toolbar>
+        <div class="p-toolbar-group-left">
+            <p-button label="New" icon="pi pi-plus" (click)="displayDialog = true"></p-button>
+        </div>
+      </p-toolbar>
+    </div>
+
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-table
+          [paginator]="true"
+          [rows]="5"
+          [value]="showrooms"
+          styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['name']"
+        >
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="color: #0093e9" pSortableColumn="name">
+                Title <p-sortIcon field="name"></p-sortIcon>
+              </th>
+              <th style="color: #0093e9">Commmercial 1</th>
+              <th style="color: #0093e9">Numero</th>
+              <th style="color: #0093e9">Commmercial 2</th>
+              <th style="color: #0093e9">Numero </th>
+
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-showrooms>
+            <tr>
+              <td style="font-weight: bold">{{ showrooms.title }}</td>
+              <td style="font-weight: bold">{{ showrooms.commercial?.fullName }}</td>
+              <td style="font-weight: bold">{{ showrooms.commercial?.Phone }}</td>
+              <td style="font-weight: bold">{{ showrooms.commercial2?.fullName }}</td>
+              <td style="font-weight: bold">{{ showrooms.commercial2?.Phone }}</td>
+
+              <td>
+                <button  
+                (click)="updateUser(showrooms.id)"
+                pButton pRipple label="Update"
+                icon="pi pi-pencil"
+                ></button>
+              </td>
+
+              
+              <td>
+                <p-button
+                  (click)="deleteProd(showrooms.id)"
+                  styleClass="p-button-danger p-mr-1"
+                  icon="pi pi-trash"
+                ></p-button>
+
+
+              </td>
+
+             
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+
+
+
+    
+    <p-dialog header="Add Showroom" [(visible)]="displayDialog" [responsive]="true" [modal]="isModal"
+    [style]="{width: '60%', height: '50%'}">
+    <form #addClaimForm="ngForm" (ngSubmit)="_addCategory(newProduit)">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="title">Title</label>
+          <input id="title" type="text" pInputText placeholder="Enter title" name="title"
+            [(ngModel)]="newProduit.title" required />
+        </div>
+  
+        <div class="p-field">
+          <label for="commercial">Commercial 1</label>
+          <p-dropdown [options]="commercialOptions" [(ngModel)]="newProduit.commercial" optionLabel="fullName"
+            placeholder="Select a commercial" [style]="{width: '100%'}"></p-dropdown>
+        </div>
+
+        <div class="p-field">
+          <label for="commercial">Commercial2</label>
+          <p-dropdown [options]="commercialOptions2" [(ngModel)]="newProduit.commercial2" optionLabel="fullName"
+            placeholder="Select a commercial" [style]="{width: '100%'}"></p-dropdown>
+        </div>
+
+        
+      </div>
+      <p-footer>
+        <button type="submit" pButton label="Save"></button>
+ 
+        <button type="button" pButton label="Cancel" (click)="displayDialog = false"></button>
+      </p-footer>
+    </form>
+  </p-dialog>
+  
+
+
+
+  </p-card>
+
+  <p-confirmDialog header="Delete"></p-confirmDialog>
+
+
+
+</div>

@@ -1,0 +1,177 @@
+<p-toast></p-toast>
+<div class="admin-page">
+
+    <p-card header="New Devis" subheader="List of all Devis">
+        <div class="p-grid"> </div>
+        <div class="p-col-12">
+            <p-toolbar>
+                <div class="p-toolbar-group-left">
+                    <p-button label="New" icon="pi pi-plus" (click)="displayDialog = true"  ></p-button>
+
+                 </div>
+            </p-toolbar>
+        </div>
+
+
+        <div class="p-grid">
+
+            <div class="p-col-12">
+                <p-table
+          [paginator]="true"
+          [rows]="5"
+          [value]="devis"
+          styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['dateDevis']"
+        >
+                     <ng-template pTemplate="header">
+                        <tr>
+                            <th style="color: #0093e9;" pSortableColumn="dateDevis"> Date devis <p-sortIcon field="dateDevis"></p-sortIcon> </th>
+                            <th style="color: #0093e9;">Status</th>
+                            <th style="color: #0093e9;">Utilsateur</th>
+                            <th style="color: #0093e9;">Email</th>
+                            <th style="color: #0093e9;" pSortableColumn="montant"> Montant Devis <p-sortIcon field="montant"></p-sortIcon> </th>
+                            <th style="color: #0093e9;">Showroom</th>
+                            <th style="color: #0093e9;">Client</th>
+                            <th style="color: #0093e9;">Commercial</th>
+                            <th style="color: #0093e9;">Numéro Devis</th>
+                            <th style="color: #0093e9;">Converti</th>
+                        </tr>
+                        
+                    </ng-template>
+                    <ng-template pTemplate="body" let-devis>
+                        <tr>
+                            <td style="font-weight: bold;">{{devis.dateDevis | date:'shortDate'  }}</td>
+                            <td style="font-weight: bold;">{{devis.status }}</td>
+                            <td style="font-weight: bold;">{{devis.user?.name }}</td>
+                            <td style="font-weight: bold;">{{devis.user?.email }}</td>
+                            <td style="font-weight: bold;">{{devis.montant }}</td>
+                            <td style="font-weight: bold;">{{devis.showroom?.title }}</td>
+                            <td style="font-weight: bold;">{{devis.client }}</td>
+                            <td style="font-weight: bold;">{{devis.commercial?.fullName }}</td>
+                            <td style="font-weight: bold;">{{devis.numDevis }}</td>
+                            <td style="font-weight: bold;">{{devis.converted }}</td>
+                            
+
+                
+                                <td>
+                              
+                            <button  
+                                (click)="updatee(devis.id)"
+                                 pButton pRipple label="Update"
+                                icon="pi pi-pencil"
+                                ></button>
+                            </td>
+                            
+                            <td>
+                                <button  
+                                (click)="_updateDevis(devis.id)"
+                                 pButton pRipple label="Convertir"
+                                icon="pi pi-pencil"
+                                ></button>
+                          </td>
+                          <td>
+
+                            
+                           
+                            <p-button  
+                            (click)="deleteDevis(devis.id)"
+                           styleClass="p-button-danger p-mr-1"
+                           icon="pi pi-trash"
+                        ></p-button>
+                          </td>
+
+                        </tr>
+
+
+                     </ng-template>
+                </p-table>
+
+            </div>
+
+        </div>
+
+
+
+        <p-dialog header="Add Devis" [(visible)]="displayDialog" [responsive]="true" [modal]="isModal"
+    [style]="{width: '60%', height: '50%'}">
+    <form #addClaimForm="ngForm" (ngSubmit)="_addCategory(newProduit)">
+        <div class="p-fluid">
+            <div class="p-field">
+                <label for="dateDevis">Date Devis</label>
+                <input id="dateDevis" type="date" pInputText placeholder="Enter Date" name="dateDevis"
+                    [(ngModel)]="newProduit.dateDevis" required />
+            </div>
+
+            <div class="p-field">
+                <label for="status">Status</label>
+                <select id="status" pInputText [(ngModel)]="newProduit.status" name="status" required>
+                    <option value="Devis">Devis</option>
+                    <option value="Commande">Commande</option>
+                    <option value="Livraison">Livraison</option>
+                </select>
+            </div>
+
+            <div class="p-field">
+                <label for="montant">Montant</label>
+                <input id="montant" type="number" pInputText placeholder="Enter Montant" name="montant"
+                    [(ngModel)]="newProduit.montant" required />
+            </div>
+
+          
+            <div class="p-field">
+                <label for="commercial">Showroom</label>
+                <p-dropdown [options]="showroomOptions" [(ngModel)]="newProduit.showroom" optionLabel="title"
+                  placeholder="Select a Showroom" [style]="{width: '100%'}"></p-dropdown>
+              </div>
+
+
+
+
+            <div class="p-field">
+                <label for="numDevis">Numero Devis</label>
+                <input id="numDevis" type="text" pInputText placeholder="Enter Numero Devis" name="numDevis"
+                    [(ngModel)]="newProduit.numDevis" required />
+            </div>
+
+
+            <div class="p-field">
+                <label for="client">Client</label>
+                <input id="client" type="text" pInputText placeholder="Enter Client" name="client"
+                    [(ngModel)]="newProduit.client" required />
+            </div>
+
+            <div class="p-field">
+                <label for="commercial">Commercial</label>
+                <p-dropdown [options]="commercialOptions" [(ngModel)]="newProduit.commercial" optionLabel="fullName"
+                  placeholder="Select a commercial" [style]="{width: '100%'}"></p-dropdown>
+              </div>
+
+            <div class="p-field">
+                <label for="user">User</label>
+                <input id="user" type="text" pInputText placeholder="Enter User" name="user"
+                    [(ngModel)]="newProduit.user" required />
+            </div>
+        </div>
+        <p-footer>
+            <button type="submit" pButton label="Save" ></button>
+            <button type="button" pButton label="Cancel" (click)="displayDialog = false"></button>
+        </p-footer>
+    </form>
+</p-dialog>
+
+
+<p-confirmDialog header="Delete"></p-confirmDialog>
+
+
+ <button  
+ (click)="exportExcel(devis)" 
+ pButton pRipple label="Export to Excel"
+icon="pi pi-file-excel"
+></button>
+<br> <br>
+<button  
+ (click)="exportPdf(devis)" 
+ pButton pRipple label="Export to Pdf  "
+icon="pi pi-file-pdf"
+></button>
+    </p-card>

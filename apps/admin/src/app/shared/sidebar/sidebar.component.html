@@ -1,0 +1,46 @@
+<div class="admin-sidebar">
+  <div class="logo">
+    <img src="/assets/images/avatar.jpg" alt="" style="width: 200px; height: auto; border: 1px solid #0f0e0e; border-radius: 10px;box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);">
+  </div>
+  <div class="links">
+    <ul>
+      <li>
+        <a routerLink="/dashboard"><i class="pi pi-chart-bar"></i> Dashboard</a>
+      </li>
+      <li>
+        <a routerLink="/stat"><i class="pi pi-file"></i> Devis</a>
+      </li>
+      <li>
+        <a routerLink="/commandes"><i class="pi pi-file"></i> Commandes</a>
+      </li>
+      <li>
+        <a routerLink="/livraisons"><i class="pi pi-file"></i> Livraisons</a>
+      </li>
+       <li>
+        <a routerLink="/orderss"><i class="pi pi-book"></i> Articles</a>
+      </li >       
+      <li>
+        <a routerLink="/categories"><i class=" pi pi-book"></i> Produits</a>
+      </li>
+      <li>
+        <a routerLink="/users"><i class="pi pi-users"></i> Users</a>
+      </li>
+      <li>
+        <a routerLink="/products"><i class="pi pi-users"></i> Contacts</a>
+        <li>
+          <a routerLink="/catalogues"><i class="pi pi-map-marker"></i> Showroom</a>
+        </li>
+
+        <li>
+          <a routerLink="/commercials"><i class="pi pi-share-alt"></i> Commerciaux</a>
+        </li>
+
+        <li>
+          <a routerLink="/rate"><i class="pi pi-list"></i> Conversion Rate</a>
+        </li>
+      <li class="logout">
+        <a><i class="pi pi-sign-out" (click)="logoutUser()"></i> Logout</a>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card header="Articles" subheader="List of all Articles">
+        <div class="p-grid"> </div>
+        <div class="p-col-12">
+            <p-toolbar>
+                <div class="p-toolbar-group-left">
+                    <p-button label="New" icon="pi pi-plus" (click)="displayDialog2 = true"></p-button>
+                 </div>
+            </p-toolbar>
+        </div>
+        
+        <p-dialog header="Add Claim" [(visible)]="displayDialog2" [responsive]="true" [modal]="isModal"
+        [style]="{width: '50%', height: '40%'}">
+            <form #addClaimForm="ngForm" (ngSubmit)="_addArticle(convertToFormData(newClaim))">
+              <div class="p-fluid">
+                <div class="p-field">
+                  <label for="description">Description</label>
+                  <input id="description" type="text" pInputText placeholder="Enter description" name="description"
+                    [(ngModel)]="newClaim.description" required />
+                </div>
+                <div class="p-field">
+                  <label for="title">Title</label>
+                  <input id="title" type="text" pInputText placeholder="Enter contenu" name="contenu"
+                    [(ngModel)]="newClaim.contenu" required />
+                </div>
+
+                <div class="p-field">
+                  <label for="date">Image</label>
+                  <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)"  />
+                  <div class="p-col-2 p-mt-2 p-pl-0">
+                    <img style="width: 50%" [src]="imageDisplay" alt="" />
+                </div>
+                </div>
+                 
+              </div>
+              <p-footer>
+                <button type="submit" pButton label="Save" ></button>
+                <button type="button" pButton label="Cancel" (click)="displayDialog2 = false"></button>
+              </p-footer>
+            </form>
+          </p-dialog>
+       
+
+        <div class="p-grid">
+
+            <div class="p-col-12">
+                <p-table
+          [paginator]="true"
+          [rows]="2"
+          [value]="articles"
+          styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['name']"
+        >
+                     <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="Description"> Description <p-sortIcon field="Description"></p-sortIcon>
+                            </th>
+ 
+                              <th pSortableColumn="Contenu"> Contenu <p-sortIcon field="price"></p-sortIcon>
+                            </th>
+                            <th>Image</th>
+                                <th pSortableColumn="category"> Summary<p-sortIcon field="category"></p-sortIcon>
+
+                         </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-articles>
+                        <tr>
+                          <td>{{articles.description}}</td>
+ 
+                          <td><button pButton type="button" label="Show Content" (click)="showDialog(articles.contenu)"></button></td>
+                          <td><img [src]="'http://localhost:3308' + articles.image" alt="Article image" width="120px"></td>
+                          <td>{{articles.summary}}</td>
+                          <td>
+                            <div class="card flex justify-content-center">
+                              <button pButton pRipple label="Update" (click)="updateArticle(articles.id)" icon="pi pi-pencil"></button> <br>
+                              <button pButton pRipple (click)="summarizeArticle(articles.id)" label="Summary" icon="pi pi-plus" ></button>
+                             <button pButton pRipple  (click)="deleteArticle(articles.id)" label="Delete" icon="pi pi-trash"></button>
+                             <p-button label="QrCode" (onClick)="Qrcode(articles.id)" ></p-button>
+
+                      </div>
+                          </td>
+                        </tr>
+                      </ng-template>
+                </p-table>
+
+            </div>
+
+        </div>
+
+    </p-card>
+    <p-dialog header="Article Content" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [style]="{width: '50vw', 'max-height': '80vh', 'overflow-y': 'auto', 'border-radius': '10px', 'box-shadow': '0px 0px 20px rgba(0, 0, 0, 0.3)'}">
+        <div class="p-fluid">
+          <div class="p-field">
+            <label for="articleContent"> </label> 
+            <textarea id="articleContent" pInputTextarea rows="20" [(ngModel)]="selectedArticleContent" readonly></textarea>
+        </div>
+        </div>
+        <p-footer>
+          <button pButton type="button" label="Close"  (click)="hideDialog()"></button>
+        </p-footer>
+      </p-dialog>
+      
+      
+      
+</div>

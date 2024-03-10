@@ -1,0 +1,68 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editmode ? 'Edit Commande' : 'Edit Livraions'" subheader="You can edit Commande here">
+        <div class="p-grid p-mb-5">
+            <div class="p-col-12">
+              <p-toolbar>
+                <div class="p-toolbar-group-left"></div>
+                <div class="p-toolbar-group-right">
+                  <p-button
+                    styleClass="p-button-primary p-mr-2"
+                    [label]="editmode ? 'Update' : 'Create'"
+                    icon="pi pi-plus"
+                    (click)="onSubmit()"
+                  ></p-button>
+                  <p-button
+                    styleClass="p-button-secondary"
+                    label="Cancel"
+                    icon="pi pi-arrow-circle-left"
+                    (click)="onCancle()"
+                  ></p-button>
+                </div>
+              </p-toolbar>
+            </div>
+          </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid p-grid">
+
+           </div>
+          <div class="p-fluid p-formgrid p-grid">
+             
+             
+            <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="name">Date commande</label>
+                <label *ngIf="LivrForm['dateCmd'].value" class="p-text-secondary">{{ LivrForm['dateCmd'].value | date: 'yyyy-MM-dd' }}</label>
+                <input formControlName="dateCmd" id="dateLivraison" type="date" pInputText placeholder=" Date" />
+                <small *ngIf="LivrForm['dateCmd'].invalid && isSubmitted" class="p-error">date commande is required</small>
+              </div>
+              
+              
+              
+              
+              
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="name">Numèro Commande</label>
+                <input formControlName="numCmd" id="name" type="text" pInputText />
+                <small *ngIf="LivrForm['numCmd'].invalid && isSubmitted" class="p-error">Numero commande is required</small>
+              </div>
+              
+
+                            
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="name">Montant commande</label>
+                <input formControlName="montantCmd" id="name" type="text" pInputText />
+                <small *ngIf="LivrForm['montantCmd'].invalid && isSubmitted" class="p-error">Montant commande is required</small>
+              </div>
+           
+              
+               
+              
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

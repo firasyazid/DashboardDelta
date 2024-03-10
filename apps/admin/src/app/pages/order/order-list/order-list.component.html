@@ -1,0 +1,48 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card header="Sessions" subheader="List of all Sessions">
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-table [value]="sessions" [paginator]="true"
+        [rows]="5" 
+        styleClass="p-datatable-gridlines">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name" style="color: #0093e9;">User Name <p-sortIcon field="user"></p-sortIcon></th>
+                    <th pSortableColumn="totalPrice" style="color: #0093e9;">dateSession <p-sortIcon field="totalPrice"></p-sortIcon></th>
+                    <th pSortableColumn="status" style="color: #0093e9;">Font Initial <p-sortIcon field="status"></p-sortIcon></th>
+                    <th pSortableColumn="status" style="color: #0093e9;">Fond Final <p-sortIcon field="status"></p-sortIcon></th>
+                    <th pSortableColumn="status" style="color: #0093e9;">SommeCopmteur <p-sortIcon field="status"></p-sortIcon></th>
+                    <th pSortableColumn="status" style="color: #0093e9;">Nombre d'heure <p-sortIcon field="status"></p-sortIcon></th>
+
+                  </tr>
+                  
+            </ng-template>
+          <ng-template pTemplate="body" let-order>
+            <tr>
+                <td><span style="font-weight: bold;">{{order.nameUser}}</span></td>
+                <td><span style="font-weight: bold;">{{ order.dateSession | date: 'd MMMM yyyy HH:mm' }}</span></td>
+
+                <td><span style="font-weight: bold;">{{ order.fondInitial }}</span></td>
+                <td><span style="font-weight: bold;">{{ order.fondFinal }}</span></td>
+                <td><span style="font-weight: bold;">{{ order.SommeCopmteur }}</span></td>
+                <td><span style="font-weight: bold;">{{ order.Nbheure }}</span></td>              
+              
+              <td>
+
+                <p-button
+                (click)="showSession(order.id)"
+                   icon="pi pi-eye"
+                ></p-button>
+                
+
+              </td>
+               
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-card>
+</div>
+ 

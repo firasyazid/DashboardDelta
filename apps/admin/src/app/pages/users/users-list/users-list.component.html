@@ -1,0 +1,75 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card header="Users" subheader="List of all users">
+    <div class="p-grid">
+     
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <p-table
+        [paginator]="true"
+        [rows]="4"
+[value]="users" styleClass="p-datatable-gridlines">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="color: #0093e9;">Id</th>
+
+              <th pSortableColumn="name" style="color: #0093e9;">Name <p-sortIcon field="name"></p-sortIcon></th>
+              <th style="color: #0093e9;">Email</th>
+              <th style="color: #0093e9;">Phone</th>
+              <th style="color: #0093e9;">Fonction</th>
+              <th style="color: #0093e9;">Validation</th>
+              <th style="color: #0093e9;">Admin</th>
+              <th style="color: #0093e9;">Total Point</th>
+              <th style="color: #0093e9;">Carte cin</th>
+              <th style="color: #0093e9;">Patente</th>
+
+
+
+
+
+
+              
+
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-user>
+            <tr>
+              <td><span style="font-weight: bold;">{{ user.id }}</span> </td>
+              <td><span style="font-weight: bold;">{{ user.name }}</span> </td>
+              <td><span style="font-weight: bold;"> {{ user.email }}</span>  </td>
+                <td><span style="font-weight: bold;">{{ user.phone }}</span> 
+                  <td><span style="font-weight: bold;"> {{ user.fonction }}</span>  </td>
+                  <td><span style="font-weight: bold;"> {{ user.validation }}</span>  </td>
+                  <td><span style="font-weight: bold;"> {{ user.isAdmin }}</span>  </td>
+                  <td><span style="font-weight: bold;"> {{ user.TotalPoint }}</span>  </td>
+                  <td><img [src]="user.cin" style="width: 100%" alt="" /></td>
+                  <td><img [src]="user.patente" style="width: 100%" alt="" /></td>
+
+         
+                  <td>
+                       <p-button  
+                (click)="deleteUser(user.id)"
+                   styleClass="p-button-danger p-mr-2"
+                  icon="pi pi-trash"
+                ></p-button>
+              </td>
+              <td>
+                <button  
+                (click)="updateUser(user.id)"
+                pButton pRipple label="Update"
+                icon="pi pi-pencil"
+                ></button>
+ 
+ 
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </p-card>
+  <p-confirmDialog header="Delete"></p-confirmDialog>
+
+</div>
+ 

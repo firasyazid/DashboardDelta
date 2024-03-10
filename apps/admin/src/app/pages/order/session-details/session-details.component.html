@@ -1,0 +1,54 @@
+<p-toast></p-toast>
+<div class="admin-page" *ngIf="sessions">
+  <p-card [header]="'View Session'" subheader="You can edit sessions status here">
+    <p-fieldset legend="Sessions Details" styleClass="p-mb-4" [toggleable]="true"> 
+       <div class="p-grid">
+        <div class="p-col-4">
+          <h5 style="font-weight: bold; margin-bottom: 5px; font-size: 15px;">Name User</h5>
+          <p style="font-weight: bold; margin-bottom: 5px;color: #0000FF;">{{ sessions.nameUser }}</p>
+        </div>
+
+        <div class="p-col-4">
+          <h5 style="font-weight: bold; margin-bottom: 5px;font-size: 15px;">Session Date</h5>
+          <p style="font-weight: bold; margin-bottom: 5px;color: #0000FF;">{{ sessions.dateSession | date: 'short' }}</p>
+        </div>
+
+       <div class="p-col-4">
+          <h5 style="font-weight: bold; margin-bottom: 5px;font-size: 15px">Fond Initial</h5>
+          <p style="font-weight: bold; margin-bottom: 5px;color: #0000FF;">{{ sessions.fondInitial}}</p>
+        </div>
+
+        <div class="p-col-4">
+          <h5 style="font-weight: bold; margin-bottom: 5px;font-size: 15px">Fond Final</h5>
+          <p style="font-weight: bold; margin-bottom: 5px;color: #0000FF;">{{ sessions.fondFinal }}</p>
+        </div>
+        <div class="p-col-4">
+          <h5 style="font-weight: bold; margin-bottom: 5px;font-size: 15px" >Somme </h5>
+          <p style="font-weight: bold; margin-bottom: 5px;color: #0000FF; ">{{ sessions.Somme}} DT</p>
+        </div>
+
+         
+      </div>
+ 
+    </p-fieldset>
+  
+    <p-fieldset legend="Poste" styleClass="p-mb-4" [toggleable]="true">
+      <div class="p-grid p-mb-5" *ngFor="let postes of sessions.postes">
+
+      <div class="p-grid p-mb-5" >
+        <div class="p-col-4">
+          <h5>Poste number</h5>
+          <p style="font-weight: bold; margin-bottom: 5px;">Poste {{ postes.name }}:</p>
+          <p style="margin-top: 0; color: #0000FF ;font-weight: bold;">{{ postes.compteur }} Matches </p>        </div>
+
+  
+
+       </div>
+     
+      
+      </div>
+     </p-fieldset>
+ 
+     
+  </p-card>
+</div>

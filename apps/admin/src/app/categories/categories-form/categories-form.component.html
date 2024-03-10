@@ -1,0 +1,89 @@
+<div class="admin-page">
+    <p-card [header]="editmode ? 'Edit Article' : 'Create Article'" subheader="You can edit Article here">
+        <div class="p-grid p-mb-5">
+            <div class="p-col-12">
+              <p-toolbar>
+                <div class="p-toolbar-group-left"></div>
+                <div class="p-toolbar-group-right">
+                  <p-button
+                    styleClass="p-button-primary p-mr-2"
+                    [label]="editmode ? 'Update' : 'Create'"
+                    icon="pi pi-plus"
+                    (click)="onSubmit()"
+                  ></p-button>
+                  <p-button
+                    styleClass="p-button-secondary"
+                    label="Cancel"
+                    icon="pi pi-arrow-circle-left"
+                    (click)="onCancle()"
+                  ></p-button>
+                </div>
+              </p-toolbar>
+            </div>
+          </div>
+          <div class="p-grid">
+            <div class="p-col-12">
+              <form [formGroup]="form">
+                <div class="p-fluid p-formgrid p-grid">
+                  <div class="p-field p-col-4">
+                    <label style="font-weight: bold;" for="title">Title</label>
+                    <input formControlName="title" id="title" type="text" pInputText />
+                    <small *ngIf="PrdForm['title'].invalid && isSubmitted" class="p-error">Title is required</small>
+                  </div>
+                  <div class="p-field p-col-4">
+                    <label style="font-weight: bold;" for="contenu">Contenu</label>
+                    <input formControlName="contenu" id="contenu" type="text" pInputText />
+                    <small *ngIf="PrdForm['contenu'].invalid && isSubmitted" class="p-error">Contenu is required</small>
+                  </div>
+  
+  
+                  <div class="p-field p-col-4" style="margin: 1rem;">
+                    <label style="font-weight: bold;" for="image1">Image Principale</label>
+                    <input formControlName="image" id="image1" type="file" (change)="onImageUpload($event)" style="margin-left: 1rem;"/>
+                    <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay" *ngIf="imageDisplay"   />
+                     <small *ngIf="PrdForm['image'].invalid && isSubmitted" class="p-error">Image is required</small>
+                  </div>
+                  
+                  <div class="p-field p-col-4" style="margin: 1rem;">
+                    <label style="font-weight: bold ;" for="image1">Image 1</label>
+                    <input formControlName="image1" id="image1" type="file" (change)="onImageUpload1($event)" class="p-fileupload" style="margin-left: 4.5rem;" />
+                    <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay2" *ngIf="imageDisplay2"   />
+  
+                     <small *ngIf="PrdForm['image1'].invalid && isSubmitted" class="p-error">Image 1 is required</small>
+                  </div>
+                  
+                  <div class="p-field p-col-4" style="margin: 1rem;">
+                    <label style="font-weight: bold" for="image2">Image 2</label>
+                    <input formControlName="image2" id="image2" type="file" (change)="onImageUpload2($event)" class="p-fileupload" style="margin-left: 4.5rem;"/>
+                    <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay3" *ngIf="imageDisplay3"   />
+                    <small *ngIf="PrdForm['image2'].invalid && isSubmitted" class="p-error">Image 2 is required</small>
+                  </div>
+  
+                  <div class="p-field p-col-4" style="margin: 1rem;">
+                    <label style="font-weight: bold" for="image3">Image 3</label>
+                    <input formControlName="image3" id="image3" type="file" (change)="onImageUpload3($event)" class="p-fileupload" style="margin-left: 4.5rem;"/>
+                    <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay4" *ngIf="imageDisplay4"   />
+                    <small *ngIf="PrdForm['image3'].invalid && isSubmitted" class="p-error">Image 3 is required</small>
+                  </div>
+  
+                  <div class="p-field p-col-4" style="margin: 1rem;">
+                    <label style="font-weight: bold;" for="video">Video</label>
+                    <input formControlName="video" id="video" type="file" (change)="onVideoUpload($event)" class="p-fileupload" style="margin-left: 5.3rem;" />
+                    <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay5" *ngIf="imageDisplay5"   />
+                    <small *ngIf="PrdForm['video'].invalid && isSubmitted" class="p-error">Video is required</small>
+                  </div>
+                          
+  
+  
+  
+  
+  
+                </div>
+              </form>
+            </div>
+          </div>
+          
+  </p-card>
+  </div>
+  
+  

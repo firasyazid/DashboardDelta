@@ -1,0 +1,61 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card [header]="editmode ? 'Edit Code' : 'Add Code'" subheader="You can add or edit Code here">
+    <div class="p-grid p-mb-5">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <p-button
+              styleClass="p-button-primary p-mr-2"
+              [label]="editmode ? 'Update' : 'Create'"
+              icon="pi pi-plus"
+              (click)="onSubmit()"
+            ></p-button>
+            <p-button
+              styleClass="p-button-secondary"
+              label="Cancle"
+              icon="pi pi-arrow-circle-left"
+              (click)="onCancle()"
+            ></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-4">
+
+
+              <label for="name">Code Promo</label>
+              <input formControlName="codep" id="codep" type="text" pInputText />
+              <small *ngIf="CodeForm['codep'].invalid && isSubmitted" class="p-error"
+                >code is required</small
+              >
+            </div>
+            <div class="p-field p-col-4">
+              <label for="email">Valable</label>
+              <input formControlName="isSubmitt" id="isSubmitt" type="text" pInputText />
+              <small *ngIf="CodeForm['isSubmitt'].invalid && isSubmitted" class="p-error"
+                ><span *ngIf="CodeForm['isSubmitt']errors['required']">email is required</span>
+                <span *ngIf="CodeForm['isSubmitt']errors['isSubmitt']">isSubmitt is invalid</span></small
+              >
+            </div>
+            <div class="p-field p-col-4">
+              <label for="password">Pourcentage</label>
+              <input formControlName="pourcentage" id="pourcentage" type="text" pInputText />
+              <small *ngIf="CodeForm['pourcentage'].invalid && isSubmitted" class="p-error"
+                >pourcentage is required</small
+              >
+            </div>
+            
+             
+          </div>
+              
+         </form>
+      </div>
+    </div>
+  </p-card>
+</div>

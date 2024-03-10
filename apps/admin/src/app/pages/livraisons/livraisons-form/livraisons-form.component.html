@@ -1,0 +1,68 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editmode ? 'Edit Livraions' : 'Edit Livraions'" subheader="You can edit Livraions here">
+        <div class="p-grid p-mb-5">
+            <div class="p-col-12">
+              <p-toolbar>
+                <div class="p-toolbar-group-left"></div>
+                <div class="p-toolbar-group-right">
+                  <p-button
+                    styleClass="p-button-primary p-mr-2"
+                    [label]="editmode ? 'Update' : 'Create'"
+                    icon="pi pi-plus"
+                    (click)="onSubmit()"
+                  ></p-button>
+                  <p-button
+                    styleClass="p-button-secondary"
+                    label="Cancel"
+                    icon="pi pi-arrow-circle-left"
+                    (click)="onCancle()"
+                  ></p-button>
+                </div>
+              </p-toolbar>
+            </div>
+          </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid p-grid">
+
+           </div>
+          <div class="p-fluid p-formgrid p-grid">
+             
+             
+            <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="name">Date Livraison</label>
+                <label *ngIf="LivrForm['dateLivraison'].value" class="p-text-secondary">{{ LivrForm['dateLivraison'].value | date: 'yyyy-MM-dd' }}</label>
+                <input formControlName="dateLivraison" id="dateLivraison" type="date" pInputText placeholder=" Date" />
+                <small *ngIf="LivrForm['dateLivraison'].invalid && isSubmitted" class="p-error">date Livraison is required</small>
+              </div>
+              
+              
+              
+              
+              
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="name">Numèro livraison</label>
+                <input formControlName="numLivraison" id="name" type="text" pInputText />
+                <small *ngIf="LivrForm['numLivraison'].invalid && isSubmitted" class="p-error">Numero livraison is required</small>
+              </div>
+              
+
+                            
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="name">Montant livraison</label>
+                <input formControlName="montantLivraison" id="name" type="text" pInputText />
+                <small *ngIf="LivrForm['montantLivraison'].invalid && isSubmitted" class="p-error">Montant livraison is required</small>
+              </div>
+           
+              
+               
+              
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

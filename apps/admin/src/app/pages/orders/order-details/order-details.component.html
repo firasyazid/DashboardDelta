@@ -1,0 +1,75 @@
+<p-toast></p-toast>
+<div class="admin-page" *ngIf="order">
+  <p-card [header]="'View Order'" subheader="You can edit order status here">
+    <p-fieldset legend="Order Details" styleClass="p-mb-4" [toggleable]="true">
+      <div class="p-grid">
+        <div class="p-col-4">
+          <h5>Order Id</h5>
+          <p>{{ order.id }}</p>
+        </div>
+
+        <div class="p-col-4">
+          <h5>Order Date</h5>
+          <p>{{ order.date | date: 'short' }}</p>
+        </div>
+
+       <div class="p-col-4">
+          <h5>Order Location</h5>
+          <p>{{ order.location}}</p>
+        </div>
+
+        <div class="p-col-4">
+          <h5>Order Total Price</h5>
+          <p>{{ order.totalPrice}}</p>
+        </div>
+      </div>
+    </p-fieldset>
+    <p-fieldset legend="Order Items" styleClass="p-mb-4" [toggleable]="true">
+      <div class="p-grid p-mb-5" *ngFor="let orderItem of order.orderItems">
+
+      <div class="p-grid p-mb-5" >
+        <div class="p-col-4">
+          <h5>Service Name</h5>
+          <p>{{ orderItem.service.name}}</p>
+          </div>
+          
+      </div>
+      <div class="p-grid p-mb-5" >
+        <div class="p-col-4">
+          <h5>Service Price</h5>
+          <p>{{ orderItem.service.price}}</p>
+          </div>
+          
+      </div>
+      <div class="p-grid p-mb-5" >
+        <div class="p-col-4">
+          <h5>Service Category</h5>
+          <p>{{ orderItem.service.category.name}}</p>
+          </div>
+          
+      </div>
+      </div>
+     </p-fieldset>
+  
+    <p-fieldset legend="Order Address" styleClass="p-mb-4" [toggleable]="true">
+      <div class="p-grid">
+        <div class="p-col-4">
+          <h5>Order Address</h5>
+          <p>
+            {{ order.location}}<br />
+           </p>
+        </div>
+
+        <div class="p-col-4">
+          <h5>Customer Info</h5>
+          <p>{{ order.user.name}}</p>
+        </div>
+
+        <div class="p-col-4">
+          <h5>Contact Info</h5>
+          <p> {{order.user.phone}} </p>
+        </div>
+      </div>
+    </p-fieldset>
+  </p-card>
+</div>

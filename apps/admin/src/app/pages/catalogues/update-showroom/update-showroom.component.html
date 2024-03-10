@@ -1,0 +1,59 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editmode ? 'Edit showrooms' : 'Edit showrooms'" subheader="You can edit showrooms here">
+        <div class="p-grid p-mb-5">
+            <div class="p-col-12">
+              <p-toolbar>
+                <div class="p-toolbar-group-left"></div>
+                <div class="p-toolbar-group-right">
+                  <p-button
+                    styleClass="p-button-primary p-mr-2"
+                    [label]="editmode ? 'Update' : 'Create'"
+                    icon="pi pi-plus"
+                    (click)="onSubmit()"
+                  ></p-button>
+                  <p-button
+                    styleClass="p-button-secondary"
+                    label="Cancel"
+                    icon="pi pi-arrow-circle-left"
+                    (click)="onCancle()"
+                  ></p-button>
+                </div>
+              </p-toolbar>
+            </div>
+          </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid p-grid">
+
+           </div>
+          <div class="p-fluid p-formgrid p-grid">
+             
+            <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="name">Titre</label>
+                <input formControlName="title" id="title" type="text" pInputText />
+                <small *ngIf="userForm['title'].invalid && isSubmitted" class="p-error">title is required</small>
+              </div>
+              
+            <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="commercial">Commercial</label><br />
+                <p-dropdown formControlName="commercial" [options]="commercialOptions" optionLabel="fullName" placeholder="Select a commercial"></p-dropdown>
+             </div>
+
+
+             <div class="p-field p-col-4">
+              <label style="font-weight: bold;" for="commercial2">Commercial 2</label><br />
+              <p-dropdown formControlName="commercial2" [options]="commercialOptions2" optionLabel="fullName" placeholder="Select a commercial"></p-dropdown>
+           </div>
+
+           
+            
+            
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

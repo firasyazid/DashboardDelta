@@ -1,0 +1,95 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editmode ? 'Edit devis' : 'Edit devis'" subheader="You can edit devis here">
+        <div class="p-grid p-mb-5">
+            <div class="p-col-12">
+              <p-toolbar>
+                <div class="p-toolbar-group-left"></div>
+                <div class="p-toolbar-group-right">
+                  <p-button
+                    styleClass="p-button-primary p-mr-2"
+                    [label]="editmode ? 'Update' : 'Create'"
+                    icon="pi pi-plus"
+                    (click)="onSubmit()"
+                  ></p-button>
+                  <p-button
+                    styleClass="p-button-secondary"
+                    label="Cancel"
+                    icon="pi pi-arrow-circle-left"
+                    (click)="onCancle()"
+                  ></p-button>
+                </div>
+              </p-toolbar>
+            </div>
+          </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid p-grid">
+
+           </div>
+          <div class="p-fluid p-formgrid p-grid">
+             
+             
+            <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="name">Date </label>
+                <label *ngIf="userForm['dateDevis'].value" class="p-text-secondary">{{ userForm['dateDevis'].value | date: 'yyyy-MM-dd' }}</label>
+                <input formControlName="dateDevis" id="dateDevis" type="date" pInputText placeholder="" />
+                <small *ngIf="userForm['dateDevis'].invalid && isSubmitted" class="p-error">date Devis is required</small>
+
+              </div>
+              
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="status">Status</label>
+                <select formControlName="status" id="status" pInputText>
+                  <option [value]="status" *ngFor="let status of statusValues">{{ status }}</option>
+                </select>
+                <small *ngIf="userForm['status'].invalid && isSubmitted" class="p-error">Status is required</small>
+              </div>
+              
+              
+              
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="name">Montant</label>
+                <input formControlName="montant" id="name" type="text" pInputText />
+                <small *ngIf="userForm['montant'].invalid && isSubmitted" class="p-error">Montant is required</small>
+              </div>
+              
+           
+              
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="color">Numero Devis</label><br />
+                <input formControlName="numDevis" id="phone" type="text" pInputText />
+                <small *ngIf="userForm['numDevis'].invalid && isSubmitted" class="p-error">Num Devis is required</small>
+              </div>
+              
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="color">Client</label><br />
+                <input formControlName="client" id="phone" type="text" pInputText />
+                <small *ngIf="userForm['client'].invalid && isSubmitted" class="p-error">Client is required</small>
+              </div>
+
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="commercial">Commercial</label><br />
+                <p-dropdown formControlName="commercial" [options]="commercialOptions" optionLabel="fullName" placeholder="Select a commercial"></p-dropdown>
+             </div>
+            
+
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="color">Showroom</label><br/>
+                <p-dropdown formControlName="showroom" [options]="showroomOptions" optionLabel="title" placeholder="Select a showroom"></p-dropdown>
+                  <small *ngIf="userForm['showroom'].invalid && isSubmitted" class="p-error">Showroom is required</small>
+              </div>
+              
+              <div class="p-field p-col-4">
+                <label style="font-weight: bold;" for="color">User</label><br />
+                <input formControlName="user" id="user" type="text" pInputText />
+                <small *ngIf="userForm['user'].invalid && isSubmitted" class="p-error">User is required</small>
+               </div>
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>

@@ -1,0 +1,60 @@
+<p-toast></p-toast>
+<div class="admin-page">
+
+    <p-card header="Contacts" subheader="List of all Contacts">
+        <div class="p-grid"> </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <p-table
+          [paginator]="true"
+          [rows]="5"
+          [value]="products"
+          styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['name']"
+        >
+                     <ng-template pTemplate="header">
+                        <tr>
+                            <th style="color: #0093e9;" pSortableColumn="name"> Client <p-sortIcon field="name"></p-sortIcon>
+                            </th>
+                            <th style="color: #0093e9;">Message</th>
+                            
+                            <th style="color: #0093e9;" pSortableColumn="stock"> Devis <p-sortIcon field="stock"></p-sortIcon>
+
+                            <th style="color: #0093e9;"  pSortableColumn="category"> User<p-sortIcon field="category"></p-sortIcon>
+                            <th style="color: #0093e9;"pSortableColumn="create"> Document <p-sortIcon field="create"></p-sortIcon>
+ 
+
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td style="font-weight: bold;">{{product.client }}</td>
+                            <td style="font-weight: bold;">{{product.message }}</td>
+
+
+                            <td style="font-weight: bold;">{{product.devis }}</td>
+                            <td style="font-weight: bold;">{{product.user?.name }}</td>
+                             <td style="font-weight: bold;"><img [src]="product.document" style="width: 40%" alt="" /></td>
+
+                          
+                             <td>
+                                <p-button  
+                         (click)="deleteContacts(product.id)"
+                            styleClass="p-button-danger p-mr-1"
+                           icon="pi pi-trash"
+                         ></p-button>
+                            </td>
+
+
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+            </div>
+
+        </div>
+
+    </p-card>
+    <p-confirmDialog header="Delete"></p-confirmDialog>
+
+</div>

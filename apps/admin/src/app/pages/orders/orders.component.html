@@ -1,0 +1,152 @@
+ <p-toast></p-toast>
+<div class="admin-page">
+
+    <p-card header="Articles" subheader="List of all Articles">
+        <div class="p-grid"> </div>
+        <div class="p-col-12">
+            <p-toolbar>
+                <div class="p-toolbar-group-left">
+                    <p-button label="New" icon="pi pi-plus" (click)="displayDialog = true"></p-button>
+                 </div>
+            </p-toolbar>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <p-table
+          [paginator]="true"
+          [rows]="5"
+          [value]="produits"
+          styleClass="p-datatable-gridlines"
+          [globalFilterFields]="['name']"
+        >
+                     <ng-template pTemplate="header">
+                        <tr>
+                            <th style="color: #0093e9;" pSortableColumn="name"> Title <p-sortIcon field="name"></p-sortIcon>
+                            </th>
+                  
+                            <th style="color: #0093e9;" pSortableColumn="stock"> Contenu <p-sortIcon field="stock"></p-sortIcon>
+
+                            <th style="color: #0093e9;"  pSortableColumn="category"> Image Principal<p-sortIcon field="category"></p-sortIcon>
+                              <th style="color: #0093e9;"  pSortableColumn="category"> Image 1<p-sortIcon field="category"></p-sortIcon>
+                                <th style="color: #0093e9;"  pSortableColumn="category"> Image 2<p-sortIcon field="category"></p-sortIcon>
+                                  <th style="color: #0093e9;"  pSortableColumn="category"> Image 3<p-sortIcon field="category"></p-sortIcon>
+
+                            <th style="color: #0093e9;"pSortableColumn="create"> Video <p-sortIcon field="create"></p-sortIcon>
+ 
+
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-produits>
+                        <tr>
+                            <td style="font-weight: bold;">{{produits.title }}</td>
+                             <td style="font-weight: bold;">{{produits.contenu }}</td>
+
+                
+                              <td ><img [src]="produits.image" style="width: 70%" alt="" /></td>
+                              <td ><img [src]="produits.image1" style="width: 70%" alt="" /></td>
+                              <td ><img [src]="produits.image2" style="width: 70%" alt="" /></td>
+                              <td ><img [src]="produits.image3" style="width: 70%" alt="" /></td>
+                               <td><video [src]="produits.video" controls style="width: 70%" alt=""></video></td> 
+                               <td>
+                                <p-button  
+                         (click)="deleteProd(produits.id)"
+                            styleClass="p-button-danger p-mr-1"
+                           icon="pi pi-trash"
+                         ></p-button>
+                            </td>
+
+                            <td>
+                              <button  
+                              (click)="updateArt(produits.id)"
+                               pButton pRipple label="Update"
+                              icon="pi pi-pencil"
+                              ></button>
+              
+               
+                            </td>
+                         
+                        </tr>
+
+
+                     </ng-template>
+                </p-table>
+
+            </div>
+
+        </div>
+        <p-confirmDialog header="Delete"></p-confirmDialog>
+
+    </p-card>
+
+
+    <p-dialog header="Add Article" [(visible)]="displayDialog" [responsive]="true" [modal]="isModal"
+    [style]="{width: '60%', height: '70%'}">
+        <form #addClaimForm="ngForm" (ngSubmit)="_addCategory(convertToFormData(newProduit))">
+          <div class="p-fluid">
+            <div class="p-field">
+                <label for="description">Title</label>
+                <input id="description" type="text" pInputText placeholder="Enter titre" name="description"
+                  [(ngModel)]="newProduit.title" required />
+              </div>
+
+            <div class="p-field">
+              <label for="title">Contenu</label>
+               <input id="title" type="text" pInputText placeholder="Enter contenu" name="contenu"
+                [(ngModel)]="newProduit.contenu" required />
+            </div>
+
+            <div class="p-field">
+              <label for="date">Image Principal</label>             
+              <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)"  />
+              <div class="p-col-2 p-mt-2 p-pl-0">
+                <img style="width: 50%" [src]="imageDisplay" alt="" />
+            </div>
+            </div>
+
+            <div class="p-field">
+              <label for="date">Image 1</label>             
+              <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload1($event)"  />
+              <div class="p-col-2 p-mt-2 p-pl-0">
+                <img style="width: 20%" [src]="imageDisplay3" alt="" />
+            </div>
+            </div>
+
+            <div class="p-field">
+              <label for="date">Image2</label>             
+              <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload2($event)"  />
+              <div class="p-col-2 p-mt-2 p-pl-0">
+                <img style="width: 20%" [src]="imageDisplay4" alt="" />
+            </div>
+            </div>
+
+
+            <div class="p-field">
+              <label for="date">Image 3</label>             
+              <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload3($event)"  />
+              <div class="p-col-2 p-mt-2 p-pl-0">
+                <img style="width: 20%" [src]="imageDisplay5" alt="" />
+            </div>
+            </div>
+
+
+
+            <div class="p-field">
+                <label for="date">Video</label>
+                <input type="file" class="p-inputtext" accept="video/*" (change)="onVideoUpload($event)">
+                <div class="p-col-2 p-mt-2 p-pl-0">
+                  <img style="width: 20%" [src]="imageDisplay2" alt="" />
+              </div>
+              </div>
+          </div>
+          <p-footer>
+            <button type="submit" pButton label="Save" ></button>
+            <button type="button" pButton label="Cancel" (click)="displayDialog = false"></button>
+          </p-footer>
+        </form>
+      </p-dialog>
+
+
+
+
+
+</div>

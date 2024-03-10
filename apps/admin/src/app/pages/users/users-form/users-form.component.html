@@ -1,0 +1,83 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card [header]="editmode ? 'Edit User' : 'Add User'" subheader="You can add or edit users here">
+    <div class="p-grid p-mb-5">
+      <div class="p-col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <p-button
+              styleClass="p-button-primary p-mr-2"
+              [label]="editmode ? 'Update' : 'Create'"
+              icon="pi pi-plus"
+              (click)="onSubmit()"
+            ></p-button>
+            <p-button
+              styleClass="p-button-secondary"
+              label="Cancel"
+              icon="pi pi-arrow-circle-left"
+              (click)="onCancle()"
+            ></p-button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12">
+        <form [formGroup]="form">
+          <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-4">
+              <label  style="font-weight: bold;" for="name">Name</label>
+              <input formControlName="name" id="name" type="text" pInputText />
+              <small *ngIf="userForm['name'].invalid && isSubmitted" class="p-error"
+                >Name is required</small
+              >
+            </div>
+            <div class="p-field p-col-4">
+              
+              <label style="font-weight: bold;"  for="email"  >Email</label>
+              <input formControlName="email" id="email" type="text" pInputText />
+              <small *ngIf="userForm['email'].invalid && isSubmitted" class="p-error"
+                ><span *ngIf="userForm['email']errors['required']">email is required</span>
+                <span *ngIf="userForm['email']errors['email']">email is invalid</span></small
+              >
+            </div>
+            <div class="p-field p-col-4">
+              <label style="font-weight: bold;"  for="password" > Password</label>
+              <input formControlName="password" id="password" type="password" pInputText />
+              <div *ngIf="userForm['password'].hasError('minlength')" class="p-error">
+                Password must be at least 8 characters long.
+              </div>
+            
+            </div>
+
+            <div class="p-field p-col-4">
+              <label style="font-weight: bold;" for="color">Phone</label><br />
+              <input formControlName="phone" id="phone" type="text" pInputText />
+               <small *ngIf="userForm['phone'].invalid && isSubmitted" class="p-error"
+                >phone is required</small
+              >
+            </div>
+            
+            <div style="font-weight: bold;" class="p-field p-col-4">
+              <label for="isAdmin">Is Admin</label><br />
+              <p-inputSwitch formControlName="isAdmin"></p-inputSwitch>
+            </div>
+            <div style="font-weight: bold;" class="p-field p-col-4">
+              <label for="validation">Validation</label><br />
+              <p-inputSwitch formControlName="validation"></p-inputSwitch>
+            </div>
+
+             
+          </div>
+          <div class="p-fluid p-formgrid p-grid">
+             
+             
+                         
+            
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>
