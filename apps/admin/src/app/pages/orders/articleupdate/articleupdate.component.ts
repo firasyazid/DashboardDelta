@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProduitsService, Articless } from '@eshop/products';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import {ConfirmationService, MessageService } from 'primeng/api';
 import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -23,9 +23,14 @@ export class ArticleupdateComponent implements OnInit {
   imageDisplay3!: string | ArrayBuffer;
   imageDisplay4!: string | ArrayBuffer;
   imageDisplay5!: string | ArrayBuffer;
+
+
+  articleId: string;
+  article: Articless;
+  images: string[] = [];
+  video: string;
+
  
-
-
   constructor(
 
     private produitsService: ProduitsService,
@@ -34,12 +39,33 @@ export class ArticleupdateComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private route: ActivatedRoute,
+    private confirmationService: ConfirmationService
 
   ) { }
 
   ngOnInit(): void {
     this._initUserForm();
     this._checkEditMode();
+    this.route.params.subscribe(params => {
+      this.articleId = params['id'];
+      this.loadArticle(this.articleId);
+    });
+
+  }
+loadArticle(articleId: string): void {
+    this.produitsService.getArticleId(articleId).subscribe(article => {
+      this.article = article;
+      this.images.push(article.image);
+      this.images.push(article.image1);
+      this.images.push(article.image2);
+      this.images.push(article.image3);
+      this.video = article.video;
+      this.imageDisplay = article.image;
+      this.imageDisplay2 = article.image1;
+      this.imageDisplay3 = article.image2;
+      this.imageDisplay4 = article.image3;
+      this.imageDisplay5 = article.video;
+    });
   }
 
 
@@ -110,6 +136,126 @@ export class ArticleupdateComponent implements OnInit {
     );
   }
 
+
+  deleteImage() {
+    if (confirm('Are you sure you want to delete this image?')) {
+       this.produitsService.deleteImage(this.articleId).subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Image deleted successfully'
+          });
+          this.loadArticle(this.articleId);
+        },
+        () => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to delete image'
+          });
+        }
+      );
+    }
+  }
+  
+    
+    
+  deleteImage1() {
+    if (confirm('Are you sure you want to delete this image?')) {
+       this.produitsService.deleteImage2(this.articleId).subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Image deleted successfully'
+          });
+          this.loadArticle(this.articleId);
+        },
+        (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to delete image'
+          });
+        }
+      );
+    }
+  }
+
+
+  deleteImage2() {
+    if (confirm('Are you sure you want to delete this image?')) {
+       this.produitsService.deleteImage3(this.articleId).subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Image deleted successfully'
+          });
+          this.loadArticle(this.articleId);
+        },
+        (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to delete image'
+          });
+        }
+      );
+    }
+  }
+  
+  
+  deleteImage3() {
+    if (confirm('Are you sure you want to delete this image?')) {
+       this.produitsService.deleteImage4(this.articleId).subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Image deleted successfully'
+          });
+          this.loadArticle(this.articleId);
+        },
+        (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to delete image'
+          });
+        }
+      );
+    }
+  }
+  
+
+
+        deleteVideo() {
+                  if(confirm('Are you sure you want to delete this video?')) {
+                    this.produitsService.deleteVideoArt(this.articleId).subscribe(
+                      () => {
+                        this.messageService.add({
+                          severity: 'success',
+                          summary: 'Success',
+                          detail: 'Video deleted successfully'
+                        });
+                        this.loadArticle(this.articleId);
+                      },
+                      (error) => {
+                        this.messageService.add({
+                          severity: 'error',
+                          summary: 'Error',
+                          detail: 'Failed to delete video'
+                        });
+                      }
+                    );
+                  }
+                }
+
+
+
+
   onSubmit() {
     this.isSubmitted = true;
     if (this.form.invalid) {
@@ -146,8 +292,7 @@ export class ArticleupdateComponent implements OnInit {
           this.ArtForm['image1'].setValue(user.image1);
           this.ArtForm['image2'].setValue(user.image2);
           this.ArtForm['image3'].setValue(user.image3);
-
-        });
+         });
       }
     });
   }
@@ -159,20 +304,21 @@ export class ArticleupdateComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageDisplay = reader.result;
+        this.imageDisplay = reader.result as string;
         this.form.get('image').setValue(file); 
       };
       reader.readAsDataURL(file);
     }
   }
   
-
+ 
+  
   onImageUpload1(event) {
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageDisplay2 = reader.result;
+        this.imageDisplay2 = reader.result as string;
         this.form.get('image1').setValue(file); 
       };
       reader.readAsDataURL(file);
@@ -185,7 +331,7 @@ export class ArticleupdateComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageDisplay3 = reader.result;
+        this.imageDisplay3 = reader.result as string;
         this.form.get('image2').setValue(file); 
       };
       reader.readAsDataURL(file);
@@ -198,7 +344,7 @@ export class ArticleupdateComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageDisplay4 = reader.result;
+        this.imageDisplay4 = reader.result as string;
         this.form.get('image3').setValue(file); 
       };
       reader.readAsDataURL(file);
@@ -210,7 +356,7 @@ export class ArticleupdateComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.imageDisplay5 = reader.result;
+        this.imageDisplay5 = reader.result as string; 
         this.form.get('video').setValue(file); 
       };
       reader.readAsDataURL(file);

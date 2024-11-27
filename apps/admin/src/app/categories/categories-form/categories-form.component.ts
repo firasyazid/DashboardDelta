@@ -12,7 +12,7 @@ import { Produits, ProduitsService } from '@eshop/products';
   styles: [
   ]
 })
-export class CategoriesFormComponent {
+export class CategoriesFormComponent  implements OnInit {
 
   form!: FormGroup;
   isSubmitted = false;
@@ -26,7 +26,10 @@ export class CategoriesFormComponent {
   imageDisplay5!: string | ArrayBuffer;
 
 
-
+  articleId: string;
+  article: Produits;
+  images: string[] = [];
+  video: string;
 
   constructor(private messageService: MessageService,
     private formBuilder: FormBuilder,
@@ -34,15 +37,34 @@ export class CategoriesFormComponent {
     private route: ActivatedRoute,
     private produitsService: ProduitsService,
     private router: Router,
-
-
   ) { }
 
   ngOnInit(): void {
     this._initUserForm();
     this._checkEditMode();
+    this.route.params.subscribe(params => {
+      this.articleId = params['id'];
+      this.loadArticle(this.articleId);
+    });
+
   }
 
+
+  loadArticle(articleId: string): void {
+    this.produitsService.getProduitId(articleId).subscribe(article => {
+      this.article = article;
+      this.images.push(article.image);
+      this.images.push(article.image1);
+      this.images.push(article.image2);
+      this.images.push(article.image3);
+      this.video = article.video;
+      this.imageDisplay = article.image;
+      this.imageDisplay2 = article.image1;
+      this.imageDisplay3 = article.image2;
+      this.imageDisplay4 = article.image3;
+      this.imageDisplay5 = article.video;
+    });
+  }
   private _initUserForm() {
     this.form = this.formBuilder.group({
       title: ['', Validators.required],
@@ -114,6 +136,147 @@ export class CategoriesFormComponent {
     );
   }
  
+
+    ///imagedelete 
+
+    deleteImage() {
+      if (confirm('Are you sure you want to delete this image?')) {
+         this.produitsService.deleteImageP(this.articleId).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Image deleted successfully'
+            });
+            this.loadArticle(this.articleId);
+          },
+          () => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete image'
+            });
+          }
+        );
+      }
+    }
+    
+      
+      
+    deleteImage1() {
+      if (confirm('Are you sure you want to delete this image?')) {
+         this.produitsService.deleteImage2P(this.articleId).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Image deleted successfully'
+            });
+            this.loadArticle(this.articleId);
+          },
+          (error) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete image'
+            });
+          }
+        );
+      }
+    }
+  
+  
+    deleteImage2() {
+      if (confirm('Are you sure you want to delete this image?')) {
+         this.produitsService.deleteImage3P(this.articleId).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Image deleted successfully'
+            });
+            this.loadArticle(this.articleId);
+          },
+          (error) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete image'
+            });
+          }
+        );
+      }
+    }
+    
+    
+    deleteImage3() {
+      if (confirm('Are you sure you want to delete this image?')) {
+         this.produitsService.deleteImage4P(this.articleId).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Image deleted successfully'
+            });
+            this.loadArticle(this.articleId);
+          },
+          (error) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete image'
+            });
+          }
+        );
+      }
+    }
+    
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+    deleteVideo() {
+      if(confirm('Are you sure you want to delete this video?')) {
+        this.produitsService.deleteVideoProd(this.articleId).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: 'Video deleted successfully'
+            });
+            this.loadArticle(this.articleId);
+          },
+          (error) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete video'
+            });
+          }
+        );
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
 onSubmit() {
     this.isSubmitted = true;

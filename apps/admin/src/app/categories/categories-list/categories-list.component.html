@@ -42,9 +42,9 @@
                     <ng-template pTemplate="body" let-produits>
                         <tr>
                             <td style="font-weight: bold;">{{produits.title }}</td>
-                            <td style="font-weight: bold;">{{produits.description }}</td>
-                            <td style="font-weight: bold;">{{produits.contenu }}</td>
-
+                            <td [innerHTML]="produits.description" style="font-weight: bold;"></td>
+                            <td [innerHTML]="produits.contenu" style="font-weight: bold;"></td>
+                            
                 
                               <td ><img [src]="produits.image" style="width: 40%" alt="" /></td>
                               <td ><img [src]="produits.image1" style="width: 40%" alt="" /></td>
@@ -85,35 +85,50 @@
 
 
     <p-dialog header="Add " [(visible)]="displayDialog" [responsive]="true" [modal]="isModal"
-    [style]="{width: '60%', height: '50%'}">
+    [style]="{width: '80%', height: '70%'}">
         <form #addClaimForm="ngForm" (ngSubmit)="_addCategory(convertToFormData(newProduit))">
           <div class="p-fluid">
             <div class="p-field">
-                <label for="description">Title</label>
-                <input id="description" type="text" pInputText placeholder="Enter description" name="description"
+              <label for="Title" style="font-weight: bold;">Title</label>
+              <input id="Title" type="text" pInputText placeholder="Enter Title" name="Title"
                   [(ngModel)]="newProduit.title" required />
               </div>
+              <div class="p-field">
+                <label for="Title" style="font-weight: bold;">Description</label>
+                <input id="Title" type="text" pInputText placeholder="Enter description" name="Description"
+                [(ngModel)]="newProduit.description" 
+                required />
+                </div>
+  
+
+
+ 
+              
+              <div class="p-field">
+                <label for="contenu" 
+                style="font-weight: bold;"
+                >Contenu</label>
+                <p-editor 
+                  [(ngModel)]="newProduit.contenu" 
+                  name="contenu" 
+                  [style]="{ height: '150px', 'font-size': '18px' }"
+                  class="custom-editor">
+                </p-editor>
+              </div>
+              
 
             <div class="p-field">
-              <label for="description">Description</label>
-              <input id="description" type="text" pInputText placeholder="Enter description" name="description"
-                [(ngModel)]="newProduit.description" required />
-            </div>
-
-            <div class="p-field">
-              <label for="title">Contenu</label>
-               <input id="title" type="text" pInputText placeholder="Enter contenu" name="contenu"
-                [(ngModel)]="newProduit.contenu" required />
-            </div>
-
-            <div class="p-field">
-              <label for="date">Image Principale</label>
+              <label for="date" 
+              style="font-weight: bold;"
+              >Image Principale</label>
               <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)"  />
               <div class="p-col-2 p-mt-2 p-pl-0">
                 <img style="width: 70%" [src]="imageDisplay" alt="" />
             </div>
             </div>
-            <div class="p-field">
+            <div class="p-field"
+            style="font-weight: bold;"
+            >
               <label for="date">Image 1</label>             
               <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload2($event)"  />
               <div class="p-col-2 p-mt-2 p-pl-0">
@@ -123,7 +138,9 @@
 
 
             <div class="p-field">
-              <label for="date">Image 2</label>
+              <label for="date"
+              style="font-weight: bold;"
+              >Image 2</label>
               <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload3($event)"  />
               <div class="p-col-2 p-mt-2 p-pl-0">
                 <img style="width: 20%" [src]="imageDisplay4" alt="" />
@@ -132,14 +149,18 @@
             </div>
 
             <div class="p-field">
-              <label for="date">Image 3</label>             
+              <label for="date"
+              style="font-weight: bold;"
+              >Image 3</label>             
               <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload4($event)"  />
               <div class="p-col-2 p-mt-2 p-pl-0">
                 <img style="width: 20%" [src]="imageDisplay5" alt="" />
             </div>
             </div>
 
-            <div class="p-field">
+            <div class="p-field"
+            style="font-weight: bold;"
+            >
                 <label for="date">Video</label>
                 <input type="file" class="p-inputtext" accept="video/*" (change)="onVideoUpload($event)">
                 <div class="p-col-2 p-mt-2 p-pl-0">

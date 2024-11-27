@@ -25,63 +25,121 @@
           <div class="p-col-12">
             <form [formGroup]="form">
               <div class="p-fluid p-formgrid p-grid">
+
+
+ 
+
+                
                 <div class="p-field p-col-4">
                   <label style="font-weight: bold;" for="title">Title</label>
-                  <input formControlName="title" id="title" type="text" pInputText />
+                  <input type="text" pInputText formControlName="title" id="title" 
+                         [style]="{ height: '40px', 'font-size': '18px' }"
+                         class="custom-input" />
+
+
                   <small *ngIf="ArtForm['title'].invalid && isSubmitted" class="p-error">Title is required</small>
                 </div>
+
+
                 <div class="p-field p-col-4">
                   <label style="font-weight: bold;" for="contenu">Contenu</label>
-                  <input formControlName="contenu" id="contenu" type="text" pInputText />
+                  <p-editor formControlName="contenu" id="contenu"  
+
+                  [style]="{ height: '150px', 'font-size': '18px' }"
+                  class="custom-editor">
+                </p-editor>
+
+
                   <small *ngIf="ArtForm['contenu'].invalid && isSubmitted" class="p-error">Contenu is required</small>
                 </div>
 
 
-                <div class="p-field p-col-4" style="margin: 1rem;">
+                <div class="p-field p-col-4" style="margin: 1rem; display: flex; align-items: center;">
                   <label style="font-weight: bold;" for="image1">Image Principale</label>
                   <input formControlName="image" id="image1" type="file" (change)="onImageUpload($event)" style="margin-left: 1rem;"/>
-                  <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay" *ngIf="imageDisplay"   />
-                   <small *ngIf="ArtForm['image'].invalid && isSubmitted" class="p-error">Image is required</small>
+                  <img style="width: 5%; height: 5%; margin-left: 1rem;" [src]="imageDisplay" *ngIf="imageDisplay" />
+                  <small *ngIf="ArtForm['image'].invalid && isSubmitted" class="p-error">Image is required</small>
+                
+                  <div style="margin-left: auto;">
+                    <p-button
+                      (click)="deleteImage()"
+                      styleClass="p-button-danger p-mr-1" icon="pi pi-trash"></p-button>
+                  </div>
+                  
                 </div>
                 
-                <div class="p-field p-col-4" style="margin: 1rem;">
-                  <label style="font-weight: bold ;" for="image1">Image 1</label>
+                
+                <div class="p-field p-col-4" style="margin: 1rem; display: flex; align-items: center;">
+                  <label style="font-weight: bold;" for="image1">Image 1</label>
                   <input formControlName="image1" id="image1" type="file" (change)="onImageUpload1($event)" class="p-fileupload" style="margin-left: 4.5rem;" />
-                  <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay2" *ngIf="imageDisplay2"   />
-
-                   <small *ngIf="ArtForm['image1'].invalid && isSubmitted" class="p-error">Image 1 is required</small>
+                  <img style="width: 5%; height: 5%; margin-left: 1rem;" [src]="imageDisplay2" *ngIf="imageDisplay2" />
+                  <small *ngIf="ArtForm['image1'].invalid && isSubmitted" class="p-error" style="margin-left: auto;">Image 1 is required</small>
+                  <div style="margin-left: auto;">
+                    <p-button 
+                      (click)="deleteImage1()"
+                    styleClass="p-button-danger p-mr-1" icon="pi pi-trash"></p-button>
+                  </div>
                 </div>
                 
-                <div class="p-field p-col-4" style="margin: 1rem;">
-                  <label style="font-weight: bold" for="image2">Image 2</label>
-                  <input formControlName="image2" id="image2" type="file" (change)="onImageUpload2($event)" class="p-fileupload" style="margin-left: 4.5rem;"/>
-                  <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay3" *ngIf="imageDisplay3"   />
-                  <small *ngIf="ArtForm['image2'].invalid && isSubmitted" class="p-error">Image 2 is required</small>
-                </div>
+                
+                <div class="p-field p-col-4" style="margin: 1rem; display: flex; align-items: center;">
+                  <label style="font-weight: bold;" for="image2">Image 2</label>
+                  <input formControlName="image2" id="image2" type="file" (change)="onImageUpload2($event)" class="p-fileupload" style="margin-left: 4.5rem;" />
+                  <img style="width: 5%; height: 5%; margin-left: 1rem;" [src]="imageDisplay3" *ngIf="imageDisplay3" />
+                  <small *ngIf="ArtForm['image2'].invalid && isSubmitted" class="p-error" style="margin-left: auto;">Image 2 is required</small>
+                  <div style="margin-left: auto;">
+                    <p-button  
+                    (click)="deleteImage2()"
 
-                <div class="p-field p-col-4" style="margin: 1rem;">
-                  <label style="font-weight: bold" for="image3">Image 3</label>
-                  <input formControlName="image3" id="image3" type="file" (change)="onImageUpload3($event)" class="p-fileupload" style="margin-left: 4.5rem;"/>
-                  <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay4" *ngIf="imageDisplay4"   />
-                  <small *ngIf="ArtForm['image3'].invalid && isSubmitted" class="p-error">Image 3 is required</small>
+                     styleClass="p-button-danger p-mr-1" icon="pi pi-trash"></p-button>
+                  </div>
                 </div>
+                
+                <div class="p-field p-col-4" style="margin: 1rem; display: flex; align-items: center;">
+                  <label style="font-weight: bold;" for="image3">Image 3</label>
+                  <input formControlName="image3" id="image3" type="file" (change)="onImageUpload3($event)" class="p-fileupload" style="margin-left: 4.5rem;" />
+                  <img style="width: 5%; height: 5%; margin-left: 1rem;" [src]="imageDisplay4" *ngIf="imageDisplay4" />
+                  <small *ngIf="ArtForm['image3'].invalid && isSubmitted" class="p-error" style="margin-left: auto;">Image 3 is required</small>
+                  <div style="margin-left: auto;">
+                    <p-button
+                    (click)="deleteImage3()"
 
-                <div class="p-field p-col-4" style="margin: 1rem;">
+                    styleClass="p-button-danger p-mr-1" icon="pi pi-trash"></p-button>
+                  </div>
+                </div>
+                
+
+                
+                <div class="p-field p-col-4" style="margin: 1rem; display: flex; align-items: center;">
                   <label style="font-weight: bold;" for="video">Video</label>
                   <input formControlName="video" id="video" type="file" (change)="onVideoUpload($event)" class="p-fileupload" style="margin-left: 5.3rem;" />
-                  <img style="width: 5%; height: 5% ; position: absolute;"  [src]="imageDisplay5" *ngIf="imageDisplay5"   />
+                  <video *ngIf="video" controls style="width: 5%; height: 5%; margin-left: 1rem;">
+                    <source [src]="video" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
                   <small *ngIf="ArtForm['video'].invalid && isSubmitted" class="p-error">Video is required</small>
+
+                      <div style="margin-left: auto;">
+                    <p-button
+                    (click)="deleteVideo()"
+                    styleClass="p-button-danger p-mr-1" icon="pi pi-trash"></p-button>
+                    </div>
+
+
                 </div>
-                        
-
-
-
-
-
+                
+               
+               
               </div>
             </form>
           </div>
         </div>
+
+
+     
+
+        
+
         
 </p-card>
 </div>

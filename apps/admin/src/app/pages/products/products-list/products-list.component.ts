@@ -44,7 +44,7 @@ export class ProductsListComponent implements OnInit {
   deleteContacts(userId: string) {
     
     this.confirmationService.confirm({
-      message: 'Êtes-vous sûr de vouloir supprimer cet commande?',
+      message: 'Êtes-vous sûr de vouloir supprimer cet recommandation?',
       header: 'Confirmation',
         accept: () => {
 

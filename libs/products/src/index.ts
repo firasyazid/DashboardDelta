@@ -16,6 +16,7 @@ export * from './lib/models/rate';
 export * from './lib/models/livraisons';
 export * from './lib/models/commande';
 export * from './lib/models/commercial';
+export * from './lib/models/UserPushToken';
 
   
 

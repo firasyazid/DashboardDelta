@@ -14,23 +14,23 @@ export class CategoriesService {
   constructor(private http: HttpClient) {}
 
   getCategories(): Observable<Product[]> {
-    return this.http.get<Category[]>('https://deltacuisineapp.azurewebsites.net/api/v1/categories/')
+    return this.http.get<Category[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/')
   }
 
   createCategory(category: Category) :Observable<Category> {
-    return this.http.post<Category>('https://deltacuisineapp.azurewebsites.net/api/v1/categories/',category)
+    return this.http.post<Category>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/',category)
   }
 
   getCategory(categoryId : string): Observable<Category> {
-    return this.http.get<Category>(`https://deltacuisineapp.azurewebsites.net/api/v1/categories/${categoryId}`)
+    return this.http.get<Category>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/${categoryId}`)
   }
 
 
   updateCategory(category: Category) :Observable<Category> {
-    return this.http.put<Category>('https://deltacuisineapp.azurewebsites.net/api/v1/categories/'+ category.id,category)
+    return this.http.put<Category>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/'+ category.id,category)
   }
  
   deleteCategory(categoryId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisineapp.azurewebsites.net/api/v1/categories/${categoryId}`)
+    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/${categoryId}`)
   }
 }

@@ -56,6 +56,7 @@ import { ArticleupdateComponent } from './pages/orders/articleupdate/articleupda
 import { CommercialsComponent } from './pages/commercials/commercials.component';
 import { CommercialFormComponent } from './pages/commercials/commercial-form/commercial-form.component';
 import { UpdateShowroomComponent } from './pages/catalogues/update-showroom/update-showroom.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
  
 
 
@@ -91,6 +92,11 @@ const routes: Routes = [
         path: 'products',
         component: ProductsListComponent,
       },
+      {
+        path: 'notifications',
+        component: NotificationsComponent,
+      },
+
       {
         path: 'products/form',
         component: ProductsFormComponent,
@@ -223,6 +229,7 @@ const routes: Routes = [
     CommercialsComponent,
     CommercialFormComponent,
     UpdateShowroomComponent,
+    NotificationsComponent,
   ],
   imports: [
     TagModule,
@@ -265,6 +272,7 @@ const routes: Routes = [
     CommercialsComponent,
     CommercialFormComponent,
     UpdateShowroomComponent,
+    NotificationsComponent,
   ],
 })
 export class AppModule {}

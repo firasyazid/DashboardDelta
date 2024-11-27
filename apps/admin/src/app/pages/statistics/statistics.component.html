@@ -40,7 +40,7 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-devis>
                         <tr>
-                            <td style="font-weight: bold;">{{devis.dateDevis | date:'shortDate'  }}</td>
+                            <td style="font-weight: bold;">{{devis.dateDevis | date:'dd/MM/yy'}}</td>
                             <td style="font-weight: bold;">{{devis.status }}</td>
                             <td style="font-weight: bold;">{{devis.user?.name }}</td>
                             <td style="font-weight: bold;">{{devis.user?.email }}</td>
