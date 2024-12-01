@@ -17,7 +17,7 @@ export class AuthService {
     ) { }
 
   login(email: string, password: string): Observable<User> {
-    return this.http.post<User>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/login`, { email, password });
+    return this.http.post<User>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/login`, { email, password });
   }
   logout() {
 

@@ -11,28 +11,28 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/');
+    return this.http.get<User[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/');
   }
 
   getUser(userId: string): Observable<User> {
-    return this.http.get<User>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/${userId}`);
+    return this.http.get<User>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/${userId}`);
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/', user);
+    return this.http.post<User>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/', user);
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/${user.id}`, user);
+    return this.http.put<User>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/${user.id}`, user);
   }
 
   deleteUser(userId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/${userId}`);
+    return this.http.delete<object>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/${userId}`);
   }
 
   getUsersCount(): Observable<number> {
     return this.http
-      .get<number>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/get/count`)
+      .get<number>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/get/count`)
       .pipe(map((objectValue: any) => objectValue.userCount));
   }
 

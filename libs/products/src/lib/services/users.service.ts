@@ -17,76 +17,76 @@ import { UserPushToken } from '../models/UserPushToken';
 })
 export class UsersService {
 
-  private baseUrl = 'https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/session';
+  private baseUrl = 'https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/session';
 
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/');
+    return this.http.get<User[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/');
   }
 
   getUser(userId: string): Observable<User> {
-    return this.http.get<User>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/${userId}`);
+    return this.http.get<User>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/${userId}`);
   }
 
   createUser(user: User): Observable<User> {
-    return this.http.post<User>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/', user);
+    return this.http.post<User>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/', user);
   }
 
 
    createNotification(user: any): Observable<any> {
-    return this.http.post<any>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/userPushTokens/send-custom-notification/', user);
+    return this.http.post<any>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/userPushTokens/send-custom-notification/', user);
   }
  
   updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/${user.id}`, user);
+    return this.http.put<User>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/${user.id}`, user);
   }
 
   deleteUser(userId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/${userId}`);
+    return this.http.delete<object>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/${userId}`);
 
   }
 
   getUsersCount(): Observable<number> {
     return this.http
-      .get<number>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/users/get/count`)
+      .get<number>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/users/get/count`)
       .pipe(map((objectValue: any) => objectValue.userCount));
   }
 
   getSession(): Observable<Session[]> {
-    return this.http.get<Session[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/session/display');
+    return this.http.get<Session[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/session/display');
   }
 
 
   getSessionById(sessionId: string): Observable<Session> {
-    return this.http.get<Session>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/session/display/${sessionId}`);
+    return this.http.get<Session>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/session/display/${sessionId}`);
   }
 
   getSessionsSum(): Observable<number> {
     return this.http
-      .get<number>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/session/sum`)
+      .get<number>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/session/sum`)
       .pipe(map((objectValue: any) => objectValue.totalSum));
   }
 
 
   getSessionsSumMonth(): Observable<number> {
     return this.http
-      .get<number>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/session/sumMonth`)
+      .get<number>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/session/sumMonth`)
       .pipe(map((objectValue: any) => objectValue.totalSum));
   }
 
 
   createSession(session: Session): Observable<Session> {
-    return this.http.post<Session>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/session/add', session);
+    return this.http.post<Session>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/session/add', session);
   }
 
 
   getLastSession(): Observable<Session> {
-    return this.http.get<Session>(('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/session/last-session'));
+    return this.http.get<Session>(('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/session/last-session'));
   }
 
   updateSession(sess: Session): Observable<Session> {
-    return this.http.put<Session>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/session/${sess.id}`, sess);
+    return this.http.put<Session>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/session/${sess.id}`, sess);
   }
 
 
@@ -100,132 +100,132 @@ export class UsersService {
   }
 
   getStat(): Observable<any> {
-    return this.http.get<any>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/session/sum-by-day');
+    return this.http.get<any>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/session/sum-by-day');
   }
 
 
   getCatalogues(): Observable<Catalogues[]> {
-    return this.http.get<Catalogues[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/catalogues/');
+    return this.http.get<Catalogues[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/catalogues/');
   }
 
   deletecatalogues(userId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/catalogues/${userId}`);
+    return this.http.delete<object>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/catalogues/${userId}`);
   }
 
   getShowroom(): Observable<Showroom[]> {
-    return this.http.get<Showroom[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/showrooms/');
+    return this.http.get<Showroom[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/showrooms/');
   }
 
   deleteShowroom(userId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/showrooms/${userId}`);
+    return this.http.delete<object>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/showrooms/${userId}`);
   }
 
   createShowroom(user: Showroom): Observable<Showroom> {
-    return this.http.post<Showroom>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/showrooms/', user);
+    return this.http.post<Showroom>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/showrooms/', user);
   }
 
 
   createRate(rate: Rate): Observable<Rate> {
-    return this.http.post<Rate>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/conversions/', rate);
+    return this.http.post<Rate>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/conversions/', rate);
   }
 
   getRate(): Observable<Rate[]> {
-    return this.http.get<Rate[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/conversions/');
+    return this.http.get<Rate[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/conversions/');
   }
 
 
   deleteRate(rateId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/conversions/${rateId}`);
+    return this.http.delete<object>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/conversions/${rateId}`);
   }
 
 
   updateRate(rate: Rate): Observable<Rate> {
-    return this.http.put<Rate>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/conversions/${rate.id}`, rate);
+    return this.http.put<Rate>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/conversions/${rate.id}`, rate);
   }
 
   getshowroomsCount(): Observable<number> {
     return this.http
-      .get<number>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/showrooms/get/count`)
+      .get<number>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/showrooms/get/count`)
       .pipe(map((objectValue: any) => objectValue.userCount));
   }
 
   getArtCount(): Observable<number> {
     return this.http
-      .get<number>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/articles/get/count`)
+      .get<number>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/articles/get/count`)
       .pipe(map((objectValue: any) => objectValue.userCount));
   }
   getDevisCount(): Observable<number> {
     return this.http
-      .get<number>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/devis/get/count`)
+      .get<number>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/devis/get/count`)
       .pipe(map((objectValue: any) => objectValue.userCount));
   }
 
   getLivraisons(): Observable<Livraison[]> {
-    return this.http.get<Livraison[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/livraisons/');
+    return this.http.get<Livraison[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/livraisons/');
   }
 
   updateLivr(livr: Livraison): Observable<Livraison> {
-    return this.http.put<Livraison>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/livraisons/${livr.id}`, livr);
+    return this.http.put<Livraison>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/livraisons/${livr.id}`, livr);
   }
 
 
   getlivrid(userId: string): Observable<Livraison> {
-    return this.http.get<Livraison>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/livraisons/${userId}`);
+    return this.http.get<Livraison>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/livraisons/${userId}`);
   }
 
 
   deleteLivr(rateId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/livraisons/${rateId}`);
+    return this.http.delete<object>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/livraisons/${rateId}`);
   }
   getCmd(): Observable<Commande[]> {
-    return this.http.get<Commande[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commandes/');
+    return this.http.get<Commande[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commandes/');
   }
 
   deleteCmd(rateId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commandes/${rateId}`);
+    return this.http.delete<object>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commandes/${rateId}`);
   }
 
 
   updateCmd(livr: Commande): Observable<Commande> {
-    return this.http.put<Commande>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commandes/${livr.id}`, livr);
+    return this.http.put<Commande>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commandes/${livr.id}`, livr);
   }
 
 
   getcmdid(userId: string): Observable<Commande> {
-    return this.http.get<Commande>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commandes/${userId}`);
+    return this.http.get<Commande>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commandes/${userId}`);
   }
 
 
   getCommercial(): Observable<Commercial[]> {
-    return this.http.get<Commercial[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commercials/');
+    return this.http.get<Commercial[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commercials/');
   }
 
   createCommercial(rate: Commercial): Observable<Commercial> {
-    return this.http.post<Commercial>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commercials/', rate);
+    return this.http.post<Commercial>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commercials/', rate);
   }
 
   deleteCom(rateId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commercials/${rateId}`);
+    return this.http.delete<object>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commercials/${rateId}`);
   }
 
 
   updateCommercial(livr: Commercial): Observable<Commercial> {
-    return this.http.put<Commercial>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commercials/${livr.id}`, livr);
+    return this.http.put<Commercial>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commercials/${livr.id}`, livr);
   }
   getcommercialid(userId: string): Observable<Commercial> {
-    return this.http.get<Commercial>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commercials/${userId}`);
+    return this.http.get<Commercial>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commercials/${userId}`);
   }
 
 
   getCommercialNameById(commercialId: string): Observable<string> {
-    return this.http.get<string>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/commercials/name/${commercialId}`);
+    return this.http.get<string>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/commercials/name/${commercialId}`);
   }
 
   updateShow(livr: Showroom): Observable<Showroom> {
-    return this.http.put<Showroom>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/showrooms/${livr.id}`, livr);
+    return this.http.put<Showroom>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/showrooms/${livr.id}`, livr);
   }
   getShowid(userId: string): Observable<Showroom> {
-    return this.http.get<Showroom>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/showrooms/${userId}`);
+    return this.http.get<Showroom>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/showrooms/${userId}`);
   }
 }
 

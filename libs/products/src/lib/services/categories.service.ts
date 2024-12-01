@@ -14,23 +14,23 @@ export class CategoriesService {
   constructor(private http: HttpClient) {}
 
   getCategories(): Observable<Product[]> {
-    return this.http.get<Category[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/')
+    return this.http.get<Category[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/categories/')
   }
 
   createCategory(category: Category) :Observable<Category> {
-    return this.http.post<Category>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/',category)
+    return this.http.post<Category>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/categories/',category)
   }
 
   getCategory(categoryId : string): Observable<Category> {
-    return this.http.get<Category>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/${categoryId}`)
+    return this.http.get<Category>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/categories/${categoryId}`)
   }
 
 
   updateCategory(category: Category) :Observable<Category> {
-    return this.http.put<Category>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/'+ category.id,category)
+    return this.http.put<Category>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/categories/'+ category.id,category)
   }
  
   deleteCategory(categoryId: string): Observable<object> {
-    return this.http.delete<object>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/categories/${categoryId}`)
+    return this.http.delete<object>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/categories/${categoryId}`)
   }
 }

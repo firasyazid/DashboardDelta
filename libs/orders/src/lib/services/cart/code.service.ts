@@ -14,18 +14,18 @@ import { Code } from '../../models/codepromo';
     constructor(private http: HttpClient) {}
   
     getCode(): Observable<Code[]> {
-      return this.http.get<Code[]>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/codepromo/');
+      return this.http.get<Code[]>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/codepromo/');
     }
 
     createCode(code: Code): Observable<Code> {
-        return this.http.post<Code>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/codepromo/', code);
+        return this.http.post<Code>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/codepromo/', code);
       }
 
       getcodee(codeId: string): Observable<Code> {
-        return this.http.get<Code>(`https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/codepromo/${codeId}`);
+        return this.http.get<Code>(`https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/codepromo/${codeId}`);
       }
  
       updateCode(code: Code) :Observable<Code> {
-        return this.http.put<Code>('https://deltacuisine-g4agfudwckhaemfm.canadacentral-01.azurewebsites.net/api/v1/codepromo/'+ code.id,code)
+        return this.http.put<Code>('https://deltabackend-ascph3fvcafhb9c2.francecentral-01.azurewebsites.net/api/v1/codepromo/'+ code.id,code)
       }
 }
